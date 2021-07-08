@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - kadabrait_content
+    - system
+    - user
+  theme:
+    - bartik
+_core:
+  default_config_hash: G-pX9mmvEHAbH9otNXaM9t_8Uc2FOFzZgofjxccAye8
+id: kadabraitcontentblock
+theme: bartik
+region: sidebar_first
+weight: 0
+provider: null
+plugin: kadabrait_content_block
+settings:
+  id: kadabrait_content_block
+  label: 'Kadabrait Content Block'
+  provider: kadabrait_content
+  label_display: visible
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

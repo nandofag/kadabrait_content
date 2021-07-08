@@ -1,0 +1,6 @@
+name: Kadabrait Content
+description: This module creates a page that lists the last 10 contents created by the user logged in.
+package: Kadabra
+
+type: module
+core_version_requirement: ^8 || ^9

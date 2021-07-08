@@ -1,0 +1,4 @@
+services:
+  kadabrait_content.list_content_service:
+    class: Drupal\kadabrait_content\Service\ListUserContentService
+    arguments: ['@current_user', '@entity_type.manager', '@renderer']

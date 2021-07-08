@@ -1,0 +1,7 @@
+kadabrait_contetn.list_content:
+  path: '/list-user-contet'
+  defaults:
+    _title: 'List User Content'
+    _controller: '\Drupal\kadabrait_content\Controller\KadabraitContentController::listContent'
+  requirements:
+    _role: 'authenticated'

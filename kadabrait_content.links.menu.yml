@@ -1,0 +1,6 @@
+kadabrait_content.admin:
+  title: 'Kadabrait Content module settings'
+  description: 'Configure kadabrait content module options'
+  parent: system.admin_config_development
+  route_name: kadabrait_contetn.admin_settings_form
+  weight: 100

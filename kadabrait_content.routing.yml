@@ -5,3 +5,13 @@ kadabrait_contetn.list_content:
     _controller: '\Drupal\kadabrait_content\Controller\KadabraitContentController::listContent'
   requirements:
     _role: 'authenticated'
+
+kadabrait_contetn.admin_settings_form:  
+  path: '/admin/config/kadabrait-content/settings'  
+  defaults:  
+    _form: '\Drupal\kadabrait_content\Form\KadabraitContentConfigForm'  
+    _title: 'Kadabrait Content Settings'  
+  requirements:  
+    _permission: 'access administration pages, kadabrait content admin'  
+  options:  
+    _admin_route: TRUE      

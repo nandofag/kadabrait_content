@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\kadabrait_content\Service\ListUserContentService;
+use Drupal\Core\Config\ConfigFactoryInterface;
 
 /**
  * Provides a custom Kadabrait Content Block.
@@ -19,6 +20,13 @@ use Drupal\kadabrait_content\Service\ListUserContentService;
 class KadabraitContentBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
+   * The config factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
    * The ListUserContentService.
    *
    * @var Drupal\kadabrait_content\Service\ListUserContentService
@@ -28,8 +36,9 @@ class KadabraitContentBlock extends BlockBase implements ContainerFactoryPluginI
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ListUserContentService $service) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, ListUserContentService $service) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->configFactory = $config_factory;
     $this->service = $service;
   }
 
@@ -41,6 +50,7 @@ class KadabraitContentBlock extends BlockBase implements ContainerFactoryPluginI
       $configuration,
       $plugin_id,
       $plugin_definition,
+      $container->get('config.factory'),
       $container->get('kadabrait_content.list_content_service')
     );
   }
@@ -50,7 +60,9 @@ class KadabraitContentBlock extends BlockBase implements ContainerFactoryPluginI
    */
   public function build() {
 
-    $output = $this->service->getData(3);
+    $config =$this->configFactory->get('kadabrait_content.settings');
+    $limit = $config->get('kadabrait_content.block_limit_content');
+    $output = $this->service->getData($limit);
     return [
       '#markup' => $output,
     ];
